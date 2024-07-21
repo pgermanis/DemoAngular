@@ -17,7 +17,7 @@ export class UserComponent {
   @Input({ required : true }) id! : string;
   @Input({ required : true }) avatar!: string;
   @Input({ required : true }) name!: string;
-  @Output() userSelectedEvent = new EventEmitter();
+  @Output() userSelectedEvent = new EventEmitter<string>();
   //Implementation with input signals
   // avatar = input.required<string>();  //read only!!!
   // name = input.required<string>();
