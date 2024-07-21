@@ -4,6 +4,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {HeaderComponent} from "./header/header.component";
 import {UserComponent} from "./user/user.component";
 import { DUMMY_USERS } from "./dummy-users";
+import {TaskComponent} from "./task/task.component";
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,8 @@ import { DUMMY_USERS } from "./dummy-users";
     RouterOutlet,
     MatSlideToggleModule,
     HeaderComponent,
-    UserComponent
+    UserComponent,
+    TaskComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -20,8 +22,12 @@ import { DUMMY_USERS } from "./dummy-users";
 export class AppComponent {
   title = 'Demo';
   users = DUMMY_USERS;
+  selectedUserName! : string;
 
   onUserSelection(id:string) {
     console.log('user selected', id);
+    let selectedUser : any = this.users.find(x => x.id == id);
+    this.selectedUserName = selectedUser?.name;
+    console.log('selected userName:',this.selectedUserName);
   }
 }
