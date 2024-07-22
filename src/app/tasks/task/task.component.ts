@@ -11,6 +11,7 @@ import {type Task } from '../../task.model';
 export class TaskComponent {
   @Input({required : true}) task! : Task ;
   @Output() completeButtonClickEvent = new EventEmitter<Task>();
+
   onCompleteButtonClick(){
     this.completeButtonClickEvent.emit(this.task);
   }
