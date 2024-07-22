@@ -9,7 +9,7 @@ import {type Task } from '../../task.model';
   styleUrl: './task.component.css'
 })
 export class TaskComponent {
-  @Input({required : true}) task! : Task ;
+  @Input({required : true}) task! : Task;
   @Output() completeButtonClickEvent = new EventEmitter<Task>();
 
   onCompleteButtonClick(){
