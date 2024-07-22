@@ -13,6 +13,6 @@ export class TaskComponent {
   @Output() completeButtonClickEvent = new EventEmitter<Task>();
 
   onCompleteButtonClick(){
-    this.completeButtonClickEvent.emit(this.task );
+    this.completeButtonClickEvent.emit(this.task);
   }
 }
