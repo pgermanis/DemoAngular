@@ -1,39 +1,62 @@
 <app-header></app-header>
 <main class="main">
   <ul id="users>">
-    <li>
-      <app-user
-        [id]="users[0].id"
-        [avatar]="users[0].avatar"
-        [name]="users[0].name"
-        (userSelectedEvent)="onUserSelection($event)"
-      ></app-user>
-    </li>
-    <li>
-      <app-user
-        [id]="users[1].id"
-        [avatar]="users[1].avatar"
-        [name]="users[1].name"
-        (userSelectedEvent)="onUserSelection($event)"
-      ></app-user>
-    </li>
-    <li>
-      <app-user
-        [id]="users[2].id"
-        [avatar]="users[2].avatar"
-        [name]="users[2].name"
-        (userSelectedEvent)="onUserSelection($event)"
-      ></app-user>
-    </li>
-    <li>
-      <app-user
-        [id]="users[3].id"
-        [avatar]="users[3].avatar"
-        [name]="users[3].name"
-        (userSelectedEvent)="onUserSelection($event)"
-      ></app-user>
-    </li>
+    @for (user of users; track user.id) {
+      <li>
+        <app-user
+          [user]="user"
+          [isSelected]="selectedUser?.id === user.id"
+          (userSelectedEvent)="onUserSelection($event)"
+        ></app-user>
+      </li>
+    }
+
+    <!--Old Versions of angular -->
+<!--    <li *ngFor="let user of users">-->
+<!--      <app-user-->
+<!--        [user]="user"-->
+<!--        (userSelectedEvent)="onUserSelection($event)"-->
+<!--      ></app-user>-->
+<!--    </li>-->
+
+
+<!--    <li>-->
+<!--      <app-user-->
+<!--        [user]="users[0]"-->
+<!--        (userSelectedEvent)="onUserSelection($event)"-->
+<!--      ></app-user>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--      <app-user-->
+<!--        [user]="users[1]"-->
+<!--        (userSelectedEvent)="onUserSelection($event)"-->
+<!--      ></app-user>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--      <app-user-->
+<!--        [user]="users[2]"-->
+<!--        (userSelectedEvent)="onUserSelection($event)"-->
+<!--      ></app-user>-->
+<!--    </li>-->
+<!--    <li>-->
+<!--      <app-user-->
+<!--        [user]="users[3]"-->
+<!--        (userSelectedEvent)="onUserSelection($event)"-->
+<!--      ></app-user>-->
+<!--    </li>-->
+
   </ul>
-  <app-task [userName]="selectedUserName"></app-task>
+
+  @if (selectedUser) {
+    <app-tasks [user]="selectedUser"></app-tasks>
+  }@else {
+    <p>Select a user to see their tasks!...</p>
+  }
+
+  <!--Old versions of angular -->
+<!--  <app-task *ngIf="selectedUserName; else fallback" [userName]="selectedUserName"/>-->
+<!--  <ng-template #fallback>-->
+<!--    <p>Select a user to see their tasks!...</p>&ndash;&gt;-->
+<!--  </ng-template>-->
 </main>
 <router-outlet />

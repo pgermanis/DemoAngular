@@ -4,7 +4,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {HeaderComponent} from "./header/header.component";
 import {UserComponent} from "./user/user.component";
 import { DUMMY_USERS } from "./dummy-users";
-import {TaskComponent} from "./task/task.component";
+import {TasksComponent} from "./tasks/tasks.component";
+import {NgForOf, NgIf} from "@angular/common";
+import {User} from "./user.model";
+
 
 @Component({
   selector: 'app-root',
@@ -14,7 +17,9 @@ import {TaskComponent} from "./task/task.component";
     MatSlideToggleModule,
     HeaderComponent,
     UserComponent,
-    TaskComponent
+    TasksComponent,
+    NgForOf,
+    NgIf
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -22,12 +27,12 @@ import {TaskComponent} from "./task/task.component";
 export class AppComponent {
   title = 'Demo';
   users = DUMMY_USERS;
-  selectedUserName! : string;
+  selectedUser? : User;
 
   onUserSelection(id:string) {
-    console.log('user selected', id);
-    let selectedUser : any = this.users.find(x => x.id == id);
-    this.selectedUserName = selectedUser?.name;
-    console.log('selected userName:',this.selectedUserName);
+    //console.log('user selected', id);
+    //let user : any = this.users.find(x => x.id == id);
+    this.selectedUser = this.users.find((user) => user.id == id);
+    //console.log('selected userName:',this.selectedUser);
   }
 }
