@@ -1,9 +1,12 @@
+@if (isAddNewTaskClicked) {
+  <app-new-task (cancelButtonClickEvent)="onCancelNewTask()" (onSubmitFormEvent)="onAddNewTask($event)"></app-new-task>
+}
 <section id="tasks">
   <header>
     <h2>{{ user.name }}'s Tasks</h2>
   </header>
   <menu>
-    <button>
+    <button (click)="onAddNewTaskButtonClicked()">
       Add Task
     </button>
   </menu>
