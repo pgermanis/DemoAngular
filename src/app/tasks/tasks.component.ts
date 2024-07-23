@@ -7,6 +7,7 @@ import {NewTaskComponent} from "./new-task/new-task.component";
 import {TasksService} from "../services/tasks-service";
 
 
+
 @Component({
   selector: 'app-tasks',
   standalone: true,
