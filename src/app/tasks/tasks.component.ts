@@ -4,6 +4,7 @@ import {DUMMY_USER_TASKS} from "../DUMMY_USER_TASKS";
 import {User} from "../user.model";
 import {NewTaskData, Task} from "../task.model";
 import {NewTaskComponent} from "./new-task/new-task.component";
+import {TasksService} from "../services/tasks-service";
 
 
 @Component({
@@ -18,18 +19,18 @@ import {NewTaskComponent} from "./new-task/new-task.component";
 })
 export class TasksComponent {
   @Input({ required : true}) user! : User;
-  tasks = DUMMY_USER_TASKS;
+
+  constructor(private tasksService : TasksService) {
+
+  }
+
   isAddNewTaskClicked : boolean = false;
   getTasksOfSelectedUser(){
-    return this.tasks.filter(x => x.userId === this.user.id);
+    return this.tasksService.getTasksFromUser(this.user.id);
   }
 
   onTaskCompletion(task: Task){
-    if (task) {
-      this.tasks = this.tasks.filter(x => x.id !== task.id);
-    } else {
-      alert('You must select a task!');
-    }
+    this.tasksService.removeTask(task);
   }
 
   onAddNewTaskButtonClicked(){
@@ -41,14 +42,14 @@ export class TasksComponent {
   }
 
   onAddNewTask(taskData:NewTaskData){
-    let sortedArray = this.tasks.sort((a,b) => {
+    let sortedArray = this.tasksService.getAllTasks().sort((a,b) => {
       let num1 = this.getNumberFromString(a.id);
       let num2 = this.getNumberFromString(b.id);
       return num1 - num2;
     });
     let lastId = sortedArray.slice(-1)[0].id??0;
     let numId = this.getNumberFromString(lastId);
-    this.tasks.push({
+    this.tasksService.addTask({
       id: 't' + (numId + 1).toString(),
       userId: this.user.id,
       title: taskData.title,
