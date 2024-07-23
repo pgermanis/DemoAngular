@@ -1,6 +1,7 @@
 //import {Component, computed, input} from '@angular/core'; //input signals
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {User} from "../user.model";
+import {CardUiComponent} from "../shared/card-ui/card-ui.component";
 //simple input
 //import { Component, computed, signal } from '@angular/core'; //signals
 
@@ -23,7 +24,9 @@ import {User} from "../user.model";
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [],
+  imports: [
+    CardUiComponent
+  ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })

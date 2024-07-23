@@ -7,12 +7,12 @@
 <!--</div>-->
 
 <!-- Implemetation with sipmle inputs -->
-<div>
+<app-card-ui>
   <button [class.active]="isSelected" (click)="onClickUserButton()">
     <img [src]="imagePath" [alt]="user.name"/>
     <span>{{ user.name }}</span>
   </button>
-</div>
+</app-card-ui>
 
 <!-- Implementation with input signals -->
 <!--<div>-->
